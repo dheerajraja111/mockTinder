@@ -9,7 +9,7 @@ const userAuth = async (req, res, next) => {
       return res.status(401).send("Unauthorized: Please login");
     }
 
-    const decodedObj = await jwt.verify(token, "Mock@Tinder123");
+    const decodedObj = await jwt.verify(token, process.env.JWT_SECRET);
 
     // validate the token
     const { _id } = decodedObj;
