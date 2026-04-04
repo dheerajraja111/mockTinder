@@ -92,11 +92,11 @@ paymentRouter.post("/payment/webhook", async (req, res) => {
 
 paymentRouter.get("/premium/verify", userAuth, async (req, res) => {
   try {
-    const user = req.user;
+    const user = req.user.toJSON();
     if (user.isPremium) {
-      return res.json({ isPremium: true });
+      return res.json({ ...user });
     }
-    res.json({ isPremium: false });
+    res.json({ ...user });
   } catch (error) {
     console.error("Error verifying premium status:", error);
     res.status(500).json({ message: "Internal Server Error" });
