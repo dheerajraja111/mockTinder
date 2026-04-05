@@ -82,7 +82,6 @@ userRouter.get("/feed", userAuth, async (req, res) => {
       hideUsersFromFeed.add(req.fromUserId.toString());
       hideUsersFromFeed.add(req.toUserId.toString());
     });
-    console.log(hideUsersFromFeed);
 
     // Getting  users whose value not exist in connection request array
     const users = await User.find({
